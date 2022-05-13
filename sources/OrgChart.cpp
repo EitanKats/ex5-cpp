@@ -74,6 +74,7 @@ namespace ariel {
         while (!clearingQueue.empty()) {
             Node *toClear = clearingQueue.front();
             clearingQueue.pop();
+            std::cout << " \n CLEARING: " << toClear->getLabel() << std::endl;
             for (Node *child: toClear->getChildren()) {
                 clearingQueue.push(child);
             }
