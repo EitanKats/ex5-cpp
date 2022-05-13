@@ -19,8 +19,6 @@ namespace ariel {
 
         Node();
 
-        ~Node();
-
         const std::vector<Node *> &getChildren() const;
 
         Node(const std::string &label);

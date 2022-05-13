@@ -17,9 +17,6 @@ namespace ariel {
 
     Node::Node() {}
 
-    Node::~Node() {
-
-    }
 
     std::ostream &operator<<(std::ostream &output, const Node &currNode) {
         output << currNode._label;

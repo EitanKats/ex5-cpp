@@ -6,6 +6,7 @@
 #include "OrgChartIterator.hpp"
 #include "iostream"
 #include "stdexcept"
+#include "queue"
 
 namespace ariel {
 //    OrgChart::Iterator OrgChart::begin() {
@@ -62,6 +63,22 @@ namespace ariel {
         // check whether the existing element exists
         // check what is the type of the first element
         return *this;
+    }
+
+    OrgChart::~OrgChart() {
+        std::queue<Node *> clearingQueue;
+        for (Node *child: this->_root->getChildren()) {
+            clearingQueue.push(child);
+        }
+        delete this->_root;
+        while (!clearingQueue.empty()) {
+            Node *toClear = clearingQueue.front();
+            clearingQueue.pop();
+            for (Node *child: toClear->getChildren()) {
+                clearingQueue.push(child);
+            }
+            delete toClear;
+        }
     }
 
 }

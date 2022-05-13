@@ -13,19 +13,21 @@
 namespace ariel {
     class OrgChart {
     private:
-        Node* _root;
+        Node *_root;
         std::unordered_map<std::string, Node *> labelMap;
 
     public:
 
         OrgChart();
 
+        ~OrgChart();
+
         OrgChart(const Node *root);
 
         OrgChart &add_sub(const std::string &existingElem, const std::string &newElem);
 
 
-        OrgChart &add_root(const std::string& newRoot);
+        OrgChart &add_root(const std::string &newRoot);
 
         OrgChartIterator begin_level_order();
 
