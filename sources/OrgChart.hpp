@@ -7,8 +7,8 @@
 
 #include "Node.hpp"
 #include "iostream"
-#include "OrgChartIterator.hpp"
 #include "unordered_map"
+#include "OrgChartLevelIterator.hpp"
 
 namespace ariel {
     class OrgChart {
@@ -16,22 +16,28 @@ namespace ariel {
         Node *_root;
         std::unordered_map<std::string, Node *> labelMap;
 
+        void clearChart();
+
     public:
 
         OrgChart();
 
         ~OrgChart();
 
+        OrgChart &operator=(OrgChart &otherChart);
+
         OrgChart(const Node *root);
+
+        OrgChart(const OrgChart &otherChart);
 
         OrgChart &add_sub(const std::string &existingElem, const std::string &newElem);
 
 
         OrgChart &add_root(const std::string &newRoot);
 
-        OrgChartIterator begin_level_order();
+        OrgChartLevelIterator begin_level_order();
 
-        OrgChartIterator end_level_order();
+        OrgChartLevelIterator end_level_order();
 //
 //        Iterator begin_reverse_order();
 //
@@ -42,6 +48,7 @@ namespace ariel {
 //        Iterator begin();
 
 //        Iterator end();
+
 
 
         friend std::ostream &operator<<(std::ostream &output, const OrgChart &chart);

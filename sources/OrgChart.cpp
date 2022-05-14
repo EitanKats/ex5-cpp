@@ -3,7 +3,7 @@
 //
 
 #include "OrgChart.hpp"
-#include "OrgChartIterator.hpp"
+#include "OrgChartLevelIterator.hpp"
 #include "iostream"
 #include "stdexcept"
 #include "queue"
@@ -17,12 +17,12 @@ namespace ariel {
 //        return Iterator(nullptr);
 //    }
 
-    OrgChartIterator OrgChart::begin_level_order() {
-        return OrgChartIterator(this->_root);
+    OrgChartLevelIterator OrgChart::begin_level_order() {
+        return OrgChartLevelIterator(this->_root);
     }
 
-    OrgChartIterator OrgChart::end_level_order() {
-        return OrgChartIterator(nullptr);
+    OrgChartLevelIterator OrgChart::end_level_order() {
+        return OrgChartLevelIterator(nullptr);
     }
 
 //    Iterator OrgChart::begin_reverse_order();
@@ -66,6 +66,18 @@ namespace ariel {
     }
 
     OrgChart::~OrgChart() {
+        this->clearChart();
+    }
+
+    OrgChart &OrgChart::operator=(OrgChart &otherChart) {
+        return *this;
+    }
+
+    OrgChart::OrgChart(const OrgChart &otherChart) {
+
+    }
+
+    void OrgChart::clearChart() {
         std::queue<Node *> clearingQueue;
         for (Node *child: this->_root->getChildren()) {
             clearingQueue.push(child);
