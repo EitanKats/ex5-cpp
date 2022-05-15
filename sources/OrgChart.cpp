@@ -27,9 +27,14 @@ namespace ariel {
 
 //    Iterator OrgChart::begin_reverse_order();
 //
-//    Iterator OrgChart::begin_preorder();
-//
-//    Iterator OrgChart::end_preorder();
+
+    OrgChartPreOrderIterator OrgChart::begin_preorder() {
+        return OrgChartPreOrderIterator(this->_root);
+    }
+
+    OrgChartPreOrderIterator OrgChart::end_preorder() {
+        return OrgChartPreOrderIterator(nullptr);
+    }
 
     OrgChart::OrgChart() {}
 

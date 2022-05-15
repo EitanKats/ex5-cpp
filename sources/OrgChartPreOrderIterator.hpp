@@ -5,7 +5,7 @@
 #ifndef EX5_CPP_ORGCHARTPREORDERITERATOR_HPP
 #define EX5_CPP_ORGCHARTPREORDERITERATOR_HPP
 
-#include "queue"
+#include "stack"
 #include "Node.hpp"
 #include "OrgChartIterator.hpp"
 
@@ -14,7 +14,7 @@ namespace ariel {
         using valueType = Node *;
         using reference = Node &;
     private:
-        std::queue<valueType> currQueue;
+        std::stack<valueType> currStack;
 
         void push_node_children();
 
@@ -22,6 +22,12 @@ namespace ariel {
         OrgChartPreOrderIterator(valueType ptr);
 
         OrgChartPreOrderIterator &operator++();
+
+        OrgChartPreOrderIterator operator++(int) {
+            OrgChartPreOrderIterator tmp = *this;
+            ++(*this);
+            return tmp;
+        }
     };
 }
 

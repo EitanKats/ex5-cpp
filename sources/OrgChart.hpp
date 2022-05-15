@@ -9,6 +9,7 @@
 #include "iostream"
 #include "unordered_map"
 #include "OrgChartLevelIterator.hpp"
+#include "OrgChartPreOrderIterator.hpp"
 
 namespace ariel {
     class OrgChart {
@@ -41,9 +42,9 @@ namespace ariel {
 //
 //        Iterator begin_reverse_order();
 //
-//        Iterator begin_preorder();
+        OrgChartPreOrderIterator begin_preorder();
 //
-//        Iterator end_preorder();
+        OrgChartPreOrderIterator end_preorder();
 //
 //        Iterator begin();
 
