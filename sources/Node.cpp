@@ -35,4 +35,8 @@ namespace ariel {
         this->_children.push_back(newChild);
     }
 
+    void Node::setLabel(const std::string &label) {
+        _label = label;
+    }
+
 }

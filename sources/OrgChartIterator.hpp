@@ -16,7 +16,9 @@ namespace ariel {
 
         valueType _ptr;
 
-        OrgChartIterator(valueType ptr);
+        OrgChartIterator(valueType ptr) : _ptr(ptr) {
+
+        };
 
     public:
 
@@ -24,9 +26,13 @@ namespace ariel {
 
         valueType operator->() { return _ptr; }
 
-        bool operator==(const OrgChartIterator &b) const;
+        bool operator==(const OrgChartIterator &b) const {
+            return this->_ptr == b._ptr;
+        }
 
-        bool operator!=(const OrgChartIterator &b) const;
+        bool operator!=(const OrgChartIterator &b) const {
+            return this->_ptr != b._ptr;
+        }
     };
 }
 

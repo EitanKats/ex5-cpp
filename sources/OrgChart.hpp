@@ -10,6 +10,7 @@
 #include "unordered_map"
 #include "OrgChartLevelIterator.hpp"
 #include "OrgChartPreOrderIterator.hpp"
+#include "OrgChartReverseIterator.hpp"
 
 namespace ariel {
     class OrgChart {
@@ -27,7 +28,7 @@ namespace ariel {
 
         OrgChart &operator=(OrgChart &otherChart);
 
-        OrgChart(const Node *root);
+        OrgChart(Node *root);
 
         OrgChart(const OrgChart &otherChart);
 
@@ -39,17 +40,20 @@ namespace ariel {
         OrgChartLevelIterator begin_level_order();
 
         OrgChartLevelIterator end_level_order();
-//
-//        Iterator begin_reverse_order();
-//
+
+        OrgChartReverseIterator begin_reverse_order();
+
+        OrgChartReverseIterator reverse_order();
+
+        OrgChartReverseIterator end_reverse_order();
+
         OrgChartPreOrderIterator begin_preorder();
-//
+
         OrgChartPreOrderIterator end_preorder();
-//
-//        Iterator begin();
 
-//        Iterator end();
+        OrgChartLevelIterator begin();
 
+        OrgChartLevelIterator end();
 
 
         friend std::ostream &operator<<(std::ostream &output, const OrgChart &chart);

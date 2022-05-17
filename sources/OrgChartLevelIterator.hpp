@@ -11,10 +11,10 @@
 
 namespace ariel {
     class OrgChartLevelIterator : public OrgChartIterator {
-        using valueType = Node *;
-        using reference = Node &;
 
     private:
+        using valueType = Node *;
+        using reference = Node &;
         std::queue<valueType> currQueue;
 
         void push_node_children();

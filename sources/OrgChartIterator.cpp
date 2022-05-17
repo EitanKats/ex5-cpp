@@ -6,15 +6,4 @@
 
 namespace ariel {
 
-    OrgChartIterator::OrgChartIterator(valueType ptr) : _ptr(ptr) {
-
-    }
-
-    bool OrgChartIterator::operator==(const OrgChartIterator &b) const{
-        return this->_ptr == b._ptr;
-    }
-
-    bool OrgChartIterator::operator!=(const OrgChartIterator &b) const{
-        return this->_ptr != b._ptr;
-    }
 }

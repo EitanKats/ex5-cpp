@@ -7,15 +7,16 @@
 #include "iostream"
 #include "stdexcept"
 #include "queue"
+#include "OrgChartReverseIterator.hpp"
 
 namespace ariel {
-//    OrgChart::Iterator OrgChart::begin() {
-//        return Iterator(&(this->_root));
-//    }
-//
-//    OrgChart::Iterator OrgChart::end() {
-//        return Iterator(nullptr);
-//    }
+    OrgChartLevelIterator OrgChart::begin() {
+        return OrgChartLevelIterator(this->_root);
+    }
+
+    OrgChartLevelIterator OrgChart::end() {
+        return OrgChartLevelIterator(nullptr);
+    }
 
     OrgChartLevelIterator OrgChart::begin_level_order() {
         return OrgChartLevelIterator(this->_root);
@@ -25,8 +26,6 @@ namespace ariel {
         return OrgChartLevelIterator(nullptr);
     }
 
-//    Iterator OrgChart::begin_reverse_order();
-//
 
     OrgChartPreOrderIterator OrgChart::begin_preorder() {
         return OrgChartPreOrderIterator(this->_root);
@@ -36,9 +35,22 @@ namespace ariel {
         return OrgChartPreOrderIterator(nullptr);
     }
 
-    OrgChart::OrgChart() {}
+    OrgChartReverseIterator OrgChart::begin_reverse_order() {
+        return OrgChartReverseIterator(this->_root);
+    }
 
-    OrgChart::OrgChart(const Node *root) {
+    OrgChartReverseIterator OrgChart::reverse_order() {
+        return OrgChartReverseIterator(nullptr);
+    }
+
+    OrgChartReverseIterator OrgChart::end_reverse_order() {
+        return OrgChartReverseIterator(nullptr);
+    }
+
+    OrgChart::OrgChart() : _root(nullptr) {}
+
+    //can't be a const parameter since it doesn't match the lvalue type
+    OrgChart::OrgChart(Node *root) : _root(root) {
         this->labelMap.insert({root->getLabel(), this->_root});
     }
 
@@ -48,10 +60,19 @@ namespace ariel {
     }
 
     OrgChart &OrgChart::add_root(const std::string &newRoot) {
-        Node *rootNode = new Node(newRoot);
-        this->_root = rootNode;
+
+        if (_root == nullptr) {
+            Node *rootNode = new Node(newRoot);
+            this->_root = rootNode;
+        } else {
+            std::string prevLabel = this->_root->getLabel();
+            this->_root->setLabel(newRoot);
+            this->labelMap.erase(prevLabel);
+        }
         this->labelMap.insert({newRoot, this->_root});
+
         return *this;
+
     }
 
     OrgChart &OrgChart::add_sub(const std::string &existingElem, const std::string &newElem) {
