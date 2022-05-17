@@ -81,8 +81,6 @@ namespace ariel {
         } else {
             throw std::invalid_argument("element doesn't exist");
         }
-        // check whether the existing element exists
-        // check what is the type of the first element
         return *this;
     }
 

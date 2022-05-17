@@ -19,17 +19,27 @@ TEST_CASE ("Basic Orgchart functionality check") {
                     .add_sub("Yeled", "Shalom")
                     .add_sub("Kendrick", "Lodrick"));
             CHECK_NOTHROW(charti.add_root("rak python"));
+
     OrgChart chartizard;
+
+            SUBCASE("adding sub when node doesn't exist") {
+                CHECK_THROWS(chartizard.add_sub("testy", "testy2"));
+    }
 
             SUBCASE("creating regular iterator when there is no head") {
         auto iterStart = chartizard.begin();
                 CHECK(iterStart == chartizard.end());
 
     }
-    SUBCASE("creating reverse order with no head"){
+            SUBCASE("creating reverse order with no head") {
         auto iterStart = chartizard.begin_reverse_order();
                 CHECK(iterStart == chartizard.end_reverse_order());
-            }
+    }
+
+            SUBCASE("creating pre order with no head") {
+        auto iterStart = chartizard.begin_preorder();
+                CHECK(iterStart == chartizard.end_preorder());
+    }
 }
 
 TEST_CASE ("Basic Iterator tests") {
