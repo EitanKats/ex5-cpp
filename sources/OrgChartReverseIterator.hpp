@@ -17,9 +17,9 @@ namespace ariel {
         using valueType = Node *;
         using reference = Node &;
         std::stack<valueType> currStack;
-        std::stack<valueType> currQueue;
+        std::queue<valueType> currQueue;
 
-        void push_node_children();
+        void push_node_children(valueType);
 
     public:
         OrgChartReverseIterator(valueType ptr);

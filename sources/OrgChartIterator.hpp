@@ -10,17 +10,27 @@
 
 namespace ariel {
     class OrgChartIterator {
+
+    private:
         using valueType = Node *;
         using reference = Node &;
-    protected:
-
         valueType _ptr;
+
+    protected:
 
         OrgChartIterator(valueType ptr) : _ptr(ptr) {
 
-        };
+        }
 
     public:
+
+        const Node *getPtr() const {
+            return _ptr;
+        }
+
+        void setPtr(Node *ptr) {
+            _ptr = ptr;
+        };
 
         reference operator*() const { return *_ptr; }
 
@@ -33,6 +43,8 @@ namespace ariel {
         bool operator!=(const OrgChartIterator &b) const {
             return this->_ptr != b._ptr;
         }
+
+        virtual OrgChartIterator &operator++() = 0;
     };
 }
 

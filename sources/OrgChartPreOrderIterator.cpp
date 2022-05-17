@@ -8,8 +8,8 @@
 namespace ariel {
 
     void OrgChartPreOrderIterator::push_node_children() {
-        if (!_ptr->getChildren().empty()) {
-            const std::vector<Node *> children = _ptr->getChildren();
+        if (!getPtr()->getChildren().empty()) {
+            const std::vector<Node *> children = getPtr()->getChildren();
             auto _reverse_start = children.crbegin();
             auto _reverse_end = children.crend();
             for (; _reverse_start != _reverse_end; ++_reverse_start) {
@@ -26,11 +26,11 @@ namespace ariel {
 
     OrgChartPreOrderIterator &OrgChartPreOrderIterator::operator++() {
         if (!currStack.empty()) {
-            _ptr = currStack.top();
+            setPtr(currStack.top());
             currStack.pop();
             this->push_node_children();
         } else {
-            _ptr = nullptr;
+            setPtr(nullptr);
         }
 
         return *this;

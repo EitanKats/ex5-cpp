@@ -28,8 +28,6 @@ namespace ariel {
 
         OrgChart &operator=(OrgChart &otherChart);
 
-        OrgChart(Node *root);
-
         OrgChart(const OrgChart &otherChart);
 
         OrgChart &add_sub(const std::string &existingElem, const std::string &newElem);
@@ -42,9 +40,7 @@ namespace ariel {
         OrgChartLevelIterator end_level_order();
 
         OrgChartReverseIterator begin_reverse_order();
-
         OrgChartReverseIterator reverse_order();
-
         OrgChartReverseIterator end_reverse_order();
 
         OrgChartPreOrderIterator begin_preorder();
@@ -54,6 +50,7 @@ namespace ariel {
         OrgChartLevelIterator begin();
 
         OrgChartLevelIterator end();
+
 
 
         friend std::ostream &operator<<(std::ostream &output, const OrgChart &chart);

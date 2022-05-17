@@ -12,7 +12,7 @@ namespace ariel {
     Node::Node(const std::string &label, const std::vector<Node *> &children) : _label(label), _children(children) {}
 
     size_t Node::size() {
-        return this->_children.size();
+        return this->_label.size();
     }
 
     Node::Node() {}
