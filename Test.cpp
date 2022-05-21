@@ -113,3 +113,20 @@ TEST_CASE ("complex iterator tests") {
     }
 
 }
+
+TEST_CASE ("check copy constructor") {
+    OrgChart organization;
+    organization.add_root("CEO")
+            .add_sub("CEO", "CTO")         // Now the CTO is subordinate to the CEO
+            .add_sub("CEO", "CFO")         // Now the CFO is subordinate to the CEO
+            .add_sub("CEO", "COO")         // Now the COO is subordinate to the CEO
+            .add_sub("CTO", "VP_SW") // Now the VP Software is subordinate to the CTO
+            .add_sub("VP_SW", "VP_ZB") // Now the VP Software is subordinate to the CTO
+            .add_sub("VP_ZB", "VP_BB")
+            .add_sub("VP_ZB", "VP_Balba")
+            .add_sub("COO", "VP_BI");
+    OrgChart copyTest;
+    copyTest.add_root("Charlie");
+    std::cout << copyTest << std::endl;
+    copyTest = organization;
+}

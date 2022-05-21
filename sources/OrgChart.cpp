@@ -8,8 +8,10 @@
 #include "stdexcept"
 #include "queue"
 #include "OrgChartReverseIterator.hpp"
+#include "algorithm"
 
 namespace ariel {
+    //region iterator methods
     OrgChartLevelIterator OrgChart::begin() {
         return OrgChartLevelIterator(this->_root);
     }
@@ -46,11 +48,26 @@ namespace ariel {
     OrgChartReverseIterator OrgChart::end_reverse_order() {
         return OrgChartReverseIterator(nullptr);
     }
+    //endregion
 
     OrgChart::OrgChart() : _root(nullptr) {}
 
+    static void printSubtree(std::ostream &output, const Node *currNode, const std::string &prefix) {
+        output << currNode->getLabel() << "\n";
+        for (Node *child: currNode->getChildren()) {
+            output << prefix << "  |--";
+            std::string depthIdent = "";
+            for (int i = 0; i < child->getLevel(); ++i) {
+                depthIdent += "   ";
+            }
+            printSubtree(output, child, depthIdent);
+        }
+    }
+
     std::ostream &operator<<(std::ostream &output, const OrgChart &chart) {
-        output << "BLA";
+        if (chart._root != nullptr) {
+            printSubtree(output, chart._root, "");
+        }
         return output;
     }
 
@@ -75,6 +92,7 @@ namespace ariel {
         if (searchResult != this->labelMap.end()) {
             Node *currNode = searchResult->second;
             Node *newChild = new Node(newElem);
+            newChild->setLevel(currNode->getLevel() + 1);
             currNode->add_child(newChild);
             this->labelMap.insert({newElem, newChild});
 
@@ -89,11 +107,27 @@ namespace ariel {
     }
 
     OrgChart &OrgChart::operator=(OrgChart &otherChart) {
+        OrgChart temp(otherChart);
+        std::swap(this->_root, temp._root);
+        std::swap(this->labelMap, temp.labelMap);
         return *this;
     }
 
-    OrgChart::OrgChart(const OrgChart &otherChart) {
+    OrgChart::OrgChart(const OrgChart &otherChart) : _root(nullptr) {
+        if (otherChart._root != nullptr) {
+            this->add_root(otherChart._root->getLabel());
+            std::queue<Node *> bfsQueue;
+            bfsQueue.push(otherChart._root);
 
+            while (!bfsQueue.empty()) {
+                Node *toCopy = bfsQueue.front();
+                bfsQueue.pop();
+                for (Node *child: toCopy->getChildren()) {
+                    this->add_sub(toCopy->getLabel(), child->getLabel());
+                    bfsQueue.push(child);
+                }
+            }
+        }
     }
 
     void OrgChart::clearChart() {

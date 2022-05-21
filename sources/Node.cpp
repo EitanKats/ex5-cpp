@@ -11,10 +11,6 @@ namespace ariel {
 
     Node::Node(const std::string &label, const std::vector<Node *> &children) : _label(label), _children(children) {}
 
-    size_t Node::size() {
-        return this->_label.size();
-    }
-
     Node::Node() {}
 
 
@@ -37,6 +33,14 @@ namespace ariel {
 
     void Node::setLabel(const std::string &label) {
         _label = label;
+    }
+
+    void Node::setLevel(int level) {
+        _level = level;
+    }
+
+    int Node::getLevel() const {
+        return _level;
     }
 
 }

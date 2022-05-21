@@ -11,10 +11,17 @@
 namespace ariel {
 
     class Node {
+    private:
         std::string _label;
         std::vector<Node *> _children;
+        int _level = 0;
 
     public:
+
+        int getLevel() const;
+
+        void setLevel(int level);
+
         const std::string &getLabel() const;
 
         Node();
@@ -26,8 +33,6 @@ namespace ariel {
         Node(const std::string &label);
 
         Node(const std::string &label, const std::vector<Node *> &children);
-
-        size_t size();
 
         void add_child(Node *newChild);
 

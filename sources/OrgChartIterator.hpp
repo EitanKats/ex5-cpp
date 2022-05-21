@@ -12,13 +12,12 @@ namespace ariel {
     class OrgChartIterator {
 
     private:
-        using valueType = Node *;
-        using reference = Node &;
-        valueType _ptr;
+
+        Node *_ptr;
 
     protected:
 
-        OrgChartIterator(valueType ptr) : _ptr(ptr) {
+        OrgChartIterator(Node *ptr) : _ptr(ptr) {
 
         }
 
@@ -32,9 +31,9 @@ namespace ariel {
             _ptr = ptr;
         };
 
-        reference operator*() const { return *_ptr; }
+        const std::string &operator*() const { return (*_ptr).getLabel(); }
 
-        valueType operator->() { return _ptr; }
+        const std::string *operator->() { return &(_ptr->getLabel()); }
 
         bool operator==(const OrgChartIterator &b) const {
             return this->_ptr == b._ptr;
