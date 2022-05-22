@@ -3,12 +3,11 @@
 //
 
 #include "OrgChartReverseIterator.hpp"
-#include "iostream"
 
 namespace ariel {
     void OrgChartReverseIterator::push_node_children(Node *currNode) {
         if (!currNode->getChildren().empty()) {
-            const std::vector<Node *> children = currNode->getChildren();
+            const std::vector<Node *>& children = currNode->getChildren();
             auto _reverse_start = children.crbegin();
             auto _reverse_end = children.crend();
             for (; _reverse_start != _reverse_end; ++_reverse_start) {
