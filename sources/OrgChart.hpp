@@ -20,6 +20,8 @@ namespace ariel {
 
         void clearChart();
 
+        void validateChart() const;
+
     public:
 
         OrgChart();
@@ -40,7 +42,9 @@ namespace ariel {
         OrgChartLevelIterator end_level_order();
 
         OrgChartReverseIterator begin_reverse_order();
+
         OrgChartReverseIterator reverse_order();
+
         OrgChartReverseIterator end_reverse_order();
 
         OrgChartPreOrderIterator begin_preorder();
@@ -50,7 +54,6 @@ namespace ariel {
         OrgChartLevelIterator begin();
 
         OrgChartLevelIterator end();
-
 
 
         friend std::ostream &operator<<(std::ostream &output, const OrgChart &chart);

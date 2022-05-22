@@ -9,10 +9,12 @@
 #include "queue"
 #include "OrgChartReverseIterator.hpp"
 #include "algorithm"
+#include "exception"
 
 namespace ariel {
     //region iterator methods
     OrgChartLevelIterator OrgChart::begin() {
+        this->validateChart();
         return OrgChartLevelIterator(this->_root);
     }
 
@@ -21,31 +23,38 @@ namespace ariel {
     }
 
     OrgChartLevelIterator OrgChart::begin_level_order() {
+        this->validateChart();
         return OrgChartLevelIterator(this->_root);
     }
 
     OrgChartLevelIterator OrgChart::end_level_order() {
+        this->validateChart();
         return OrgChartLevelIterator(nullptr);
     }
 
 
     OrgChartPreOrderIterator OrgChart::begin_preorder() {
+        this->validateChart();
         return OrgChartPreOrderIterator(this->_root);
     }
 
     OrgChartPreOrderIterator OrgChart::end_preorder() {
+        this->validateChart();
         return OrgChartPreOrderIterator(nullptr);
     }
 
     OrgChartReverseIterator OrgChart::begin_reverse_order() {
+        this->validateChart();
         return OrgChartReverseIterator(this->_root);
     }
 
     OrgChartReverseIterator OrgChart::reverse_order() {
+        this->validateChart();
         return OrgChartReverseIterator(nullptr);
     }
 
     OrgChartReverseIterator OrgChart::end_reverse_order() {
+        this->validateChart();
         return OrgChartReverseIterator(nullptr);
     }
     //endregion
@@ -147,6 +156,10 @@ namespace ariel {
             }
             delete toClear;
         }
+    }
+
+    void OrgChart::validateChart() const {
+        if (_root == nullptr) throw std::runtime_error("chart is empty!");
     }
 
 }
