@@ -35,4 +35,10 @@ namespace ariel {
 
         return *this;
     }
+
+    OrgChartPreOrderIterator OrgChartPreOrderIterator::operator++(int) {
+        OrgChartPreOrderIterator tmp = *this;
+        ++(*this);
+        return tmp;
+    }
 }

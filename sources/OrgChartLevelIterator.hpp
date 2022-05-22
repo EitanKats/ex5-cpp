@@ -26,11 +26,7 @@ namespace ariel {
         OrgChartLevelIterator &operator++();
 
         // Postfix increment
-        OrgChartLevelIterator operator++(int) {
-            OrgChartLevelIterator tmp = *this;
-            ++(*this);
-            return tmp;
-        }
+        OrgChartLevelIterator operator++(int);
 
     };
 }

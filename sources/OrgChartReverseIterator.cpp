@@ -44,4 +44,10 @@ namespace ariel {
         return *this;
     }
 
+    OrgChartReverseIterator OrgChartReverseIterator::operator++(int)  {
+        OrgChartReverseIterator tmp = *this;
+        ++(*this);
+        return tmp;
+    }
+
 }

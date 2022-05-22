@@ -31,4 +31,10 @@ namespace ariel {
 
         return *this;
     }
+
+    OrgChartLevelIterator OrgChartLevelIterator::operator++(int) {
+        OrgChartLevelIterator tmp = *this;
+        ++(*this);
+        return tmp;
+    }
 }

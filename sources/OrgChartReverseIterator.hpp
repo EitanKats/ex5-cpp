@@ -15,7 +15,6 @@ namespace ariel {
 
     private:
         using valueType = Node *;
-        using reference = Node &;
         std::stack<valueType> currStack;
         std::queue<valueType> currQueue;
 
@@ -26,11 +25,7 @@ namespace ariel {
 
         OrgChartReverseIterator &operator++();
 
-        OrgChartReverseIterator operator++(int) {
-            OrgChartReverseIterator tmp = *this;
-            ++(*this);
-            return tmp;
-        }
+        OrgChartReverseIterator operator++(int);
     };
 }
 

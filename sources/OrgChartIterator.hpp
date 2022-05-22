@@ -17,31 +17,21 @@ namespace ariel {
 
     protected:
 
-        OrgChartIterator(Node *ptr) : _ptr(ptr) {
-
-        }
+        OrgChartIterator(Node *ptr);
 
     public:
 
-        const Node *getPtr() const {
-            return _ptr;
-        }
+        const Node *getPtr() const;
 
-        void setPtr(Node *ptr) {
-            _ptr = ptr;
-        };
+        void setPtr(Node *ptr);
 
-        const std::string &operator*() const { return (*_ptr).getLabel(); }
+        const std::string &operator*() const;
 
-        const std::string *operator->() { return &(_ptr->getLabel()); }
+        const std::string *operator->();
 
-        bool operator==(const OrgChartIterator &b) const {
-            return this->_ptr == b._ptr;
-        }
+        bool operator==(const OrgChartIterator &b) const;
 
-        bool operator!=(const OrgChartIterator &b) const {
-            return this->_ptr != b._ptr;
-        }
+        bool operator!=(const OrgChartIterator &b) const;
 
         virtual OrgChartIterator &operator++() = 0;
     };

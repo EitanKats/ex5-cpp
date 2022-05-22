@@ -25,11 +25,7 @@ namespace ariel {
 
         OrgChartPreOrderIterator &operator++();
 
-        OrgChartPreOrderIterator operator++(int) {
-            OrgChartPreOrderIterator tmp = *this;
-            ++(*this);
-            return tmp;
-        }
+        OrgChartPreOrderIterator operator++(int);
     };
 }
 
