@@ -25,26 +25,12 @@ TEST_CASE ("Basic Orgchart functionality check") {
             SUBCASE("adding sub when node doesn't exist") {
                 CHECK_THROWS(chartizard.add_sub("testy", "testy2"));
     }
-
-            SUBCASE("creating regular iterator when there is no head") {
-        auto iterStart = chartizard.begin();
-                CHECK(iterStart == chartizard.end());
-
-    }
-            SUBCASE("creating reverse order with no head") {
-        auto iterStart = chartizard.begin_reverse_order();
-                CHECK(iterStart == chartizard.end_reverse_order());
-    }
-
-            SUBCASE("creating pre order with no head") {
-        auto iterStart = chartizard.begin_preorder();
-                CHECK(iterStart == chartizard.end_preorder());
-    }
 }
 
 TEST_CASE ("Basic Iterator tests") {
     OrgChart chart;
             CHECK_NOTHROW(chart.add_root("test"));
+    OrgChart emptyChart;
 
             SUBCASE("basic iterator creation") {
 
@@ -72,6 +58,13 @@ TEST_CASE ("Basic Iterator tests") {
                 CHECK_NOTHROW(*iterStart);
                 CHECK_NOTHROW(++iterStart);
                 CHECK(iterStart == chart.end_reverse_order());
+    }
+
+            SUBCASE("empty chart iterator tests") {
+                CHECK_THROWS(emptyChart.begin());
+                CHECK_THROWS(emptyChart.begin_preorder());
+                CHECK_THROWS(emptyChart.begin_reverse_order());
+                CHECK_THROWS(emptyChart.begin_preorder());
     }
 
 }
