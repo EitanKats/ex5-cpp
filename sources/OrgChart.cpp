@@ -19,6 +19,7 @@ namespace ariel {
     }
 
     OrgChartLevelIterator OrgChart::end() {
+        this->validateChart();
         return OrgChartLevelIterator(nullptr);
     }
 
@@ -65,7 +66,7 @@ namespace ariel {
         output << currNode->getLabel() << "\n";
         for (Node *child: currNode->getChildren()) {
             output << prefix << "  |--";
-            std::string depthIdent = "";
+            std::string depthIdent;
             for (int i = 0; i < child->getLevel(); ++i) {
                 depthIdent += "   ";
             }
@@ -159,7 +160,7 @@ namespace ariel {
     }
 
     void OrgChart::validateChart() const {
-        if (_root == nullptr) throw std::runtime_error("chart is empty!");
+        if (_root == nullptr) { throw std::runtime_error("chart is empty!"); }
     }
 
 }
