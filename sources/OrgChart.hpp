@@ -16,7 +16,7 @@ namespace ariel {
     class OrgChart {
     private:
         Node *_root;
-        std::unordered_map<std::string, Node *> labelMap;
+        std::unordered_map<std::string, Node *> _labelMap;
 
         void clearChart();
 
@@ -29,14 +29,17 @@ namespace ariel {
         ~OrgChart();
 
         OrgChart &operator=(OrgChart &otherChart);
+        OrgChart &operator=(OrgChart &&otherChart);
 
         OrgChart(const OrgChart &otherChart);
+        OrgChart(OrgChart &&otherChart);
 
         OrgChart &add_sub(const std::string &existingElem, const std::string &newElem);
 
 
         OrgChart &add_root(const std::string &newRoot);
 
+        //region iterator methods
         OrgChartLevelIterator begin_level_order();
 
         OrgChartLevelIterator end_level_order();
@@ -54,6 +57,7 @@ namespace ariel {
         OrgChartLevelIterator begin();
 
         OrgChartLevelIterator end();
+        //endregion
 
 
         friend std::ostream &operator<<(std::ostream &output, const OrgChart &chart);

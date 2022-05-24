@@ -89,22 +89,24 @@ namespace ariel {
         } else {
             std::string prevLabel = this->_root->getLabel();
             this->_root->setLabel(newRoot);
-            this->labelMap.erase(prevLabel);
+            this->_labelMap.erase(prevLabel);
         }
-        this->labelMap.insert({newRoot, this->_root});
+        this->_labelMap.insert({newRoot, this->_root});
 
         return *this;
 
     }
 
     OrgChart &OrgChart::add_sub(const std::string &existingElem, const std::string &newElem) {
-        auto searchResult = this->labelMap.find(existingElem);
-        if (searchResult != this->labelMap.end()) {
+        auto searchResult = this->_labelMap.find(existingElem);
+        if (searchResult != this->_labelMap.end()) {
             Node *currNode = searchResult->second;
             Node *newChild = new Node(newElem);
             newChild->setLevel(currNode->getLevel() + 1);
             currNode->add_child(newChild);
-            this->labelMap.insert({newElem, newChild});
+            //This only inserts to the unordered_map if it *doesn't exist*
+            //The 1st insert will be matched by the find at the top of the method
+            this->_labelMap.insert({newElem, newChild});
 
         } else {
             throw std::invalid_argument("element doesn't exist");
@@ -119,7 +121,16 @@ namespace ariel {
     OrgChart &OrgChart::operator=(OrgChart &otherChart) {
         OrgChart temp(otherChart);
         std::swap(this->_root, temp._root);
-        std::swap(this->labelMap, temp.labelMap);
+        std::swap(this->_labelMap, temp._labelMap);
+        return *this;
+    }
+
+    OrgChart &OrgChart::operator=(OrgChart &&otherChart) {
+        clearChart();
+        this->_root = otherChart._root;
+        this->_labelMap = std::move(otherChart._labelMap);
+        otherChart._root = nullptr;
+        otherChart._labelMap.clear();
         return *this;
     }
 
@@ -161,6 +172,10 @@ namespace ariel {
 
     void OrgChart::validateChart() const {
         if (_root == nullptr) { throw std::runtime_error("chart is empty!"); }
+    }
+
+    OrgChart::OrgChart(OrgChart &&otherChart) : _root(otherChart._root), _labelMap(std::move(otherChart._labelMap)) {
+        otherChart._root = nullptr;
     }
 
 }
