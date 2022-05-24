@@ -31,6 +31,9 @@ void printOrgChartSample() {
 void printActionMenu() {
     std::cout << "press 1 to add/change existing root \n"
                  "press 2 to add a child to an existing node \n"
+                 "press 3 for level order print of the current tree\n"
+                 "press 4 for pre order print of the current tree \n"
+                 "press 5 for reverse order print of the current tree\n"
                  "press 9 to toggle debug print \n"
                  "press -1 to exit" << std::endl;
 }
@@ -40,7 +43,7 @@ void clearBuff() {
     std::cin.ignore(INT_MAX, '\n');
 }
 
-void createRoot(OrgChart &currChart) {
+void modifyRoot(OrgChart &currChart) {
     clearBuff();
     std::string root;
     std::getline(std::cin, root);
@@ -53,6 +56,34 @@ void addChild(OrgChart &currChart) {
     std::getline(std::cin, existingNode);
     std::getline(std::cin, nodeToAdd);
     currChart.add_sub(existingNode, nodeToAdd);
+}
+
+void printLevelOrder(OrgChart &currChart) {
+    std::cout << "level order" << std::endl;
+    for (auto data: currChart) {
+        std::cout << data << '\t';
+    }
+    std::cout << std::endl;
+}
+
+void printPreOrder(OrgChart &currChart) {
+    std::cout << "pre order" << std::endl;
+    auto currIter = currChart.begin_preorder();
+    auto iterEnd = currChart.end_preorder();
+    for (; currIter != iterEnd; ++currIter) {
+        std::cout << (*currIter) << '\t';
+    }
+    std::cout << std::endl;
+}
+
+void printReverseOrder(OrgChart &currChart) {
+    std::cout << "reverse order" << std::endl;
+    auto currIter = currChart.begin_reverse_order();
+    auto iterEnd = currChart.end_reverse_order();
+    for (; currIter != iterEnd; ++currIter) {
+        std::cout << (*currIter) << '\t';
+    }
+    std::cout << std::endl;
 }
 
 
@@ -70,7 +101,7 @@ int main() {
                 return 0;
             }
             if (action == 1) {
-                createRoot(toCustomize);
+                modifyRoot(toCustomize);
             }
             if (action == 0) {
                 printActionMenu();
@@ -78,8 +109,17 @@ int main() {
             if (action == 2) {
                 addChild(toCustomize);
             }
+            if (action == 3) {
+                printLevelOrder(toCustomize);
+            }
+            if (action == 4) {
+                printPreOrder(toCustomize);
+            }
+            if (action == 5) {
+                printReverseOrder(toCustomize);
+            }
             if (action == 9) {
-                debugToggle = false;
+                debugToggle = !debugToggle;
             }
 
 
