@@ -9,7 +9,7 @@
 #define RESET   "\033[0m"
 #define MAGENTA "\033[35m"      /* Magenta */
 #define CYAN    "\033[36m"      /* Cyan */
-#define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
+#define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
 
 using namespace ariel;
 
@@ -124,7 +124,7 @@ int main() {
 
 
             if (debugToggle) {
-                std::cout << '\n' << BOLDMAGENTA << toCustomize << '\n' << RESET << std::endl;
+                std::cout << '\n' << BOLDCYAN << toCustomize << '\n' << RESET << std::endl;
             }
             std::cout << "press 0 to show action menu" << std::endl;
         } catch (std::exception &ex) {
