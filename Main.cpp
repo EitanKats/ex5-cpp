@@ -40,7 +40,7 @@ void printActionMenu() {
 
 void clearBuff() {
     std::cin.clear();
-    std::cin.ignore(INT_MAX, '\n');
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
 void modifyRoot(OrgChart &currChart) {
