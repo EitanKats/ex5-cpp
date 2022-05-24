@@ -125,7 +125,7 @@ namespace ariel {
         return *this;
     }
 
-    OrgChart &OrgChart::operator=(OrgChart &&otherChart) {
+    OrgChart &OrgChart::operator=(OrgChart &&otherChart) noexcept {
         clearChart();
         this->_root = otherChart._root;
         this->_labelMap = std::move(otherChart._labelMap);
@@ -174,7 +174,7 @@ namespace ariel {
         if (_root == nullptr) { throw std::runtime_error("chart is empty!"); }
     }
 
-    OrgChart::OrgChart(OrgChart &&otherChart) : _root(otherChart._root), _labelMap(std::move(otherChart._labelMap)) {
+    OrgChart::OrgChart(OrgChart &&otherChart) noexcept: _root(otherChart._root), _labelMap(std::move(otherChart._labelMap)) {
         otherChart._root = nullptr;
     }
 

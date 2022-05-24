@@ -29,10 +29,10 @@ namespace ariel {
         ~OrgChart();
 
         OrgChart &operator=(OrgChart &otherChart);
-        OrgChart &operator=(OrgChart &&otherChart);
+        OrgChart &operator=(OrgChart &&otherChart) noexcept;
 
         OrgChart(const OrgChart &otherChart);
-        OrgChart(OrgChart &&otherChart);
+        OrgChart(OrgChart &&otherChart) noexcept;
 
         OrgChart &add_sub(const std::string &existingElem, const std::string &newElem);
 
