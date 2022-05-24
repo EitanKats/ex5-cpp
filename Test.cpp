@@ -107,7 +107,7 @@ TEST_CASE ("complex iterator tests") {
 
 }
 
-TEST_CASE ("check the big 3 ") {
+TEST_CASE ("check cpyCtor copy assignment ") {
     //check node by node
     OrgChart organization;
     organization.add_root("CEO").add_sub("CEO", "YELLOW");
@@ -131,7 +131,7 @@ TEST_CASE ("check the big 3 ") {
                 CHECK(nodeCtr == 2);
     }
 
-    SUBCASE("copy constructor test"){
+            SUBCASE("copy constructor test") {
         auto originalIter = organization.begin();
         auto copyIter = copiedTree.begin();
         int nodeCtr = 0;
@@ -144,7 +144,15 @@ TEST_CASE ("check the big 3 ") {
             ++copyIter;
         }
                 CHECK(nodeCtr == 2);
-            }
+    }
 
 
+}
+
+TEST_CASE ("invalid character when creating a node") {
+    std::string invalidLabel = "asdk\x01";
+    OrgChart testChart;
+    CHECK_THROWS(testChart.add_root(invalidLabel));
+    testChart.add_root("root");
+    CHECK_THROWS(testChart.add_sub("root",invalidLabel));
 }

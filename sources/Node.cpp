@@ -4,10 +4,14 @@
 
 #include "Node.hpp"
 #include "iostream"
+#include "cctype"
+#include "stdexcept"
 
 namespace ariel {
 
-    Node::Node(const std::string &label) : _label(label), _level(0) {}
+    Node::Node(const std::string &label) : _label(label), _level(0) {
+        validateNodeString(label);
+    }
 
     Node::Node() {}
 
@@ -30,6 +34,7 @@ namespace ariel {
     }
 
     void Node::setLabel(const std::string &label) {
+        validateNodeString(label);
         _label = label;
     }
 
@@ -39,6 +44,12 @@ namespace ariel {
 
     int Node::getLevel() const {
         return _level;
+    }
+
+    void Node::validateNodeString(const std::string &label) const {
+        for (const char &currC: label) {
+            if (!std::isprint(currC)) { throw std::runtime_error("Illegal character"); }
+        }
     }
 
 }
