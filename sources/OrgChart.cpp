@@ -118,7 +118,7 @@ namespace ariel {
         this->clearChart();
     }
 
-    OrgChart &OrgChart::operator=(OrgChart &otherChart) {
+    OrgChart &OrgChart::operator=(const OrgChart &otherChart) {
         OrgChart temp(otherChart);
         std::swap(this->_root, temp._root);
         std::swap(this->_labelMap, temp._labelMap);

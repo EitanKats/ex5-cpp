@@ -28,7 +28,7 @@ namespace ariel {
 
         ~OrgChart();
 
-        OrgChart &operator=(OrgChart &otherChart);
+        OrgChart &operator=(const OrgChart &otherChart);
         OrgChart &operator=(OrgChart &&otherChart) noexcept;
 
         OrgChart(const OrgChart &otherChart);
