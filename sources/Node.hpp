@@ -14,7 +14,7 @@ namespace ariel {
     private:
         std::string _label;
         std::vector<Node *> _children;
-        int _level = 0;
+        int _level;
 
     public:
 
@@ -31,8 +31,6 @@ namespace ariel {
         const std::vector<Node *> &getChildren() const;
 
         Node(const std::string &label);
-
-        Node(const std::string &label, const std::vector<Node *> &children);
 
         void add_child(Node *newChild);
 

@@ -18,7 +18,7 @@ namespace ariel {
         }
     }
 
-    OrgChartPreOrderIterator::OrgChartPreOrderIterator(valueType ptr) : OrgChartIterator(ptr) {
+    OrgChartPreOrderIterator::OrgChartPreOrderIterator(Node * ptr) : OrgChartIterator(ptr) {
         if (ptr != nullptr) {
             this->push_node_children();
         }

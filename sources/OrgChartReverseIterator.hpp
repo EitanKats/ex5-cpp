@@ -14,14 +14,13 @@ namespace ariel {
     class OrgChartReverseIterator : public OrgChartIterator {
 
     private:
-        using valueType = Node *;
-        std::stack<valueType> currStack;
-        std::queue<valueType> currQueue;
+        std::stack<Node *> currStack;
+        std::queue<Node *> currQueue;
 
-        void push_node_children(valueType);
+        void push_node_children(Node *);
 
     public:
-        OrgChartReverseIterator(valueType ptr);
+        OrgChartReverseIterator(Node * ptr);
 
         OrgChartReverseIterator &operator++();
 

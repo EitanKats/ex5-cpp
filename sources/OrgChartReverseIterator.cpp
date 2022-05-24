@@ -16,7 +16,7 @@ namespace ariel {
         }
     }
 
-    OrgChartReverseIterator::OrgChartReverseIterator(valueType ptr) : OrgChartIterator(ptr) {
+    OrgChartReverseIterator::OrgChartReverseIterator(Node * ptr) : OrgChartIterator(ptr) {
         if (ptr != nullptr) {
             currStack.push(ptr);
             push_node_children(ptr);

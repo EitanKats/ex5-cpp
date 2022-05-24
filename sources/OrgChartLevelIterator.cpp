@@ -7,13 +7,13 @@
 namespace ariel {
     void OrgChartLevelIterator::push_node_children() {
         if (!getPtr()->getChildren().empty()) {
-            for (valueType child: getPtr()->getChildren()) {
+            for (Node * child: getPtr()->getChildren()) {
                 currQueue.push(child);
             }
         }
     }
 
-    OrgChartLevelIterator::OrgChartLevelIterator(valueType ptr) : OrgChartIterator(ptr) {
+    OrgChartLevelIterator::OrgChartLevelIterator(Node * ptr) : OrgChartIterator(ptr) {
         if (ptr != nullptr) {
             this->push_node_children();
         }

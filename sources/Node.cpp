@@ -7,9 +7,7 @@
 
 namespace ariel {
 
-    Node::Node(const std::string &label) : _label(label) {}
-
-    Node::Node(const std::string &label, const std::vector<Node *> &children) : _label(label), _children(children) {}
+    Node::Node(const std::string &label) : _label(label), _level(0) {}
 
     Node::Node() {}
 

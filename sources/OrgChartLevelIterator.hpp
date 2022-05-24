@@ -13,14 +13,12 @@ namespace ariel {
     class OrgChartLevelIterator : public OrgChartIterator {
 
     private:
-        using valueType = Node *;
-        using reference = Node &;
-        std::queue<valueType> currQueue;
+        std::queue<Node *> currQueue;
 
         void push_node_children();
 
     public:
-        OrgChartLevelIterator(valueType ptr);
+        OrgChartLevelIterator(Node * ptr);
 
         // Prefix increment
         OrgChartLevelIterator &operator++();

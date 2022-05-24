@@ -13,15 +13,13 @@ namespace ariel {
     class OrgChartPreOrderIterator : public OrgChartIterator {
 
     private:
-        using valueType = Node *;
-        using reference = Node &;
 
-        std::stack<valueType> currStack;
+        std::stack<Node *> currStack;
 
         void push_node_children();
 
     public:
-        OrgChartPreOrderIterator(valueType ptr);
+        OrgChartPreOrderIterator(Node * ptr);
 
         OrgChartPreOrderIterator &operator++();
 
