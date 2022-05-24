@@ -119,10 +119,12 @@ namespace ariel {
     }
 
     OrgChart &OrgChart::operator=(const OrgChart &otherChart) {
-        OrgChart temp(otherChart);
-        std::swap(this->_root, temp._root);
-        std::swap(this->_labelMap, temp._labelMap);
-        return *this;
+        if (this != &otherChart ){
+            OrgChart temp(otherChart);
+            std::swap(this->_root, temp._root);
+            std::swap(this->_labelMap, temp._labelMap);
+            return *this;
+        }
     }
 
     OrgChart &OrgChart::operator=(OrgChart &&otherChart) noexcept {
