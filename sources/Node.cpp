@@ -13,8 +13,6 @@ namespace ariel {
         validateNodeString(label);
     }
 
-    Node::Node() {}
-
 
     std::ostream &operator<<(std::ostream &output, const Node &currNode) {
         output << currNode._label;
@@ -46,9 +44,9 @@ namespace ariel {
         return _level;
     }
 
-    void Node::validateNodeString(const std::string &label) const {
+    void Node::validateNodeString(const std::string &label) {
         for (const char &currC: label) {
-            if (!std::isprint(currC)) { throw std::runtime_error("Illegal character"); }
+            if (!(bool)std::isprint(currC)) { throw std::runtime_error("Illegal character"); }
         }
     }
 

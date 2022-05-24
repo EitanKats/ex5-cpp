@@ -16,7 +16,7 @@ namespace ariel {
         std::vector<Node *> _children;
         int _level;
 
-        void validateNodeString(const std::string &label) const;
+        static void validateNodeString(const std::string &label);
 
     public:
 
@@ -25,8 +25,6 @@ namespace ariel {
         void setLevel(int level);
 
         const std::string &getLabel() const;
-
-        Node();
 
         void setLabel(const std::string &label);
 
