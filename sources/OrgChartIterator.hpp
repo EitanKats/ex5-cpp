@@ -6,7 +6,8 @@
 #define EX5_CPP_ORGCHARTITERATOR_HPP
 
 #include "Node.hpp"
-
+// code based on:
+//https://www.internalpointers.com/post/writing-custom-iterators-modern-cpp
 
 namespace ariel {
     class OrgChartIterator {

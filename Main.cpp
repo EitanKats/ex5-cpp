@@ -61,9 +61,9 @@ void addChild(OrgChart &currChart) {
 void printLevelOrder(OrgChart &currChart) {
     std::cout << "level order" << std::endl;
     for (auto data: currChart) {
-        std::cout << data << '\t';
+        std::cout << CYAN << data << '\t';
     }
-    std::cout << std::endl;
+    std::cout<< RESET << std::endl;
 }
 
 void printPreOrder(OrgChart &currChart) {
@@ -71,9 +71,9 @@ void printPreOrder(OrgChart &currChart) {
     auto currIter = currChart.begin_preorder();
     auto iterEnd = currChart.end_preorder();
     for (; currIter != iterEnd; ++currIter) {
-        std::cout << (*currIter) << '\t';
+        std::cout<< CYAN << (*currIter) << '\t';
     }
-    std::cout << std::endl;
+    std::cout << RESET << std::endl;
 }
 
 void printReverseOrder(OrgChart &currChart) {
@@ -81,9 +81,9 @@ void printReverseOrder(OrgChart &currChart) {
     auto currIter = currChart.begin_reverse_order();
     auto iterEnd = currChart.end_reverse_order();
     for (; currIter != iterEnd; ++currIter) {
-        std::cout << (*currIter) << '\t';
+        std::cout << CYAN<< (*currIter) << '\t';
     }
-    std::cout << std::endl;
+    std::cout<< RESET << std::endl;
 }
 
 
