@@ -2,7 +2,7 @@
 # This Makefile can handle any set of cpp and hpp files.
 # To use it, you should put all your cpp and hpp files in the SOURCE_PATH folder.
 
-CXX=clang++-9
+CXX=clang++
 CXXVERSION=c++2a
 SOURCE_PATH=sources
 OBJECT_PATH=objects
@@ -16,6 +16,10 @@ OBJECTS=$(subst sources/,objects/,$(subst .cpp,.o,$(SOURCES)))
 
 run: test
 
+main: Main.o $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o main
+
+# TestRunner.o Test.o
 test: TestRunner.o StudentTest1.o StudentTest2.o StudentTest3.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
