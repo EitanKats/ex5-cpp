@@ -22,7 +22,7 @@ namespace ariel {
     public:
         OrgChartReverseIterator(Node * ptr);
 
-        OrgChartReverseIterator &operator++();
+        OrgChartReverseIterator &operator++() override;
 
         OrgChartReverseIterator operator++(int);
     };

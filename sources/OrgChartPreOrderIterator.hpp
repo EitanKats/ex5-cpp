@@ -19,9 +19,9 @@ namespace ariel {
         void push_node_children();
 
     public:
-        OrgChartPreOrderIterator(Node * ptr);
+        OrgChartPreOrderIterator(Node *ptr);
 
-        OrgChartPreOrderIterator &operator++();
+        OrgChartPreOrderIterator &operator++() override;
 
         OrgChartPreOrderIterator operator++(int);
     };

@@ -21,7 +21,7 @@ namespace ariel {
         OrgChartLevelIterator(Node * ptr);
 
         // Prefix increment
-        OrgChartLevelIterator &operator++();
+        OrgChartLevelIterator &operator++() override;
 
         // Postfix increment
         OrgChartLevelIterator operator++(int);
